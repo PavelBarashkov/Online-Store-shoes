@@ -1,35 +1,36 @@
 import "./Styles/main.css";
 import logo from "./assests/header-logo.png";
+import { NavLink } from 'react-router-dom'
 export const Header = () => {
   return (
     <header className="container-fluid">
       <div className="row">
         <div className="col">
           <nav className="navbar navbar-expand-sm navbar-light bg-light">
-            <a className="navbar-brand" href="/">
+            <NavLink className="navbar-brand" to="/">
               <img src={logo} alt="Bosa Noga" />
-            </a>
+            </NavLink>
             <div className="collapse navbar-collapse" id="navbarMain">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <a className="nav-link" href="/">
+                  <NavLink className="nav-link" to="/">
                     Главная
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/catalog.html">
+                  <NavLink className="nav-link" to="/catalog.html">
                     Каталог
-                  </a>
-                </li>
-                <li className="nav-item active">
-                  <a className="nav-link" href="/about.html">
-                    О магазине
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/contacts.html">
+                  <NavLink className="nav-link" to="/about.html">
+                    О магазине
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/contacts.html">
                     Контакты
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
               <div className="d-flex ">
