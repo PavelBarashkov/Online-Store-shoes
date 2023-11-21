@@ -1,23 +1,29 @@
-import React from 'react'
+import React from "react";
 
+import { Banner } from "../../UI/Banner/Banner";
 export const ContactsInfo = () => {
   return (
     <main class="container">
-    <div class="row">
-      <div class="col">
-        <div class="banner">
-          <img src="./img/banner.jpg" class="img-fluid" alt="К весне готовы!"/>
-          <h2 class="banner-header">К весне готовы!</h2>
+      <div class="row">
+        <div class="col">
+          <Banner title={"К весне готовы!"} />
+          <section class="top-sales">
+            <h2 class="text-center">Контакты</h2>
+            <p>
+              Наш головной офис расположен в г.Москва, по адресу: Варшавское
+              шоссе, д. 17, бизнес-центр W Plaza.
+            </p>
+            <h5 class="text-center">Координаты для связи:</h5>
+            <p>
+              Телефон: <a href="tel:+7-495-790-35-03">+7 495 79 03 5 03</a>{" "}
+              (ежедневно: с 09-00 до 21-00)
+            </p>
+            <p>
+              Email: <a href="mailto:office@bosanoga.ru">office@bosanoga.ru</a>
+            </p>
+          </section>
         </div>
-        <section class="top-sales">
-          <h2 class="text-center">Контакты</h2>
-          <p>Наш головной офис расположен в г.Москва, по адресу: Варшавское шоссе, д. 17, бизнес-центр W Plaza.</p>
-          <h5 class="text-center">Координаты для связи:</h5>
-          <p>Телефон: <a href="tel:+7-495-790-35-03">+7 495 79 03 5 03</a> (ежедневно: с 09-00 до 21-00)</p>
-          <p>Email: <a href="mailto:office@bosanoga.ru">office@bosanoga.ru</a></p>
-        </section>
       </div>
-    </div>
-  </main>
-  )
-}
+    </main>
+  );
+};
