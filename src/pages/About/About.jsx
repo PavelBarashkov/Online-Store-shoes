@@ -1,5 +1,7 @@
+import { AboutModule } from "../../modules/AboutModule"
+
 export const About = () => {
   return (
-    <div>About</div>
+    <AboutModule/>
   );
 };
