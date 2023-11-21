@@ -1,7 +1,7 @@
-import { AboutModule } from "../../modules/AboutModule"
+import { AboutComponent } from "../../component/AboutComponent/AboutComponent";
 
 export const About = () => {
   return (
-    <AboutModule/>
+    <AboutComponent/>
   );
 };

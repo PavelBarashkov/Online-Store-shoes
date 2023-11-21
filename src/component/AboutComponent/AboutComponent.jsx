@@ -1,7 +1,7 @@
 import React from "react";
 import { Banner } from "../../UI/Banner/Banner";
 
-export const AboutModule = () => {
+export const AboutComponent = () => {
   return (
     <main className="container">
       <div className="row">
