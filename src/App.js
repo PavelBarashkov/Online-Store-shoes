@@ -7,7 +7,7 @@ import { Footer } from "./modules/Footer";
 function App() {
   return (
     <BrowserRouter>
-      <div className="app_container w-100">
+      <div className="app_container w-100 h-100">
         <header className="header">
           <Header />
         </header>
