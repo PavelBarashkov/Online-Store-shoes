@@ -1,5 +1,5 @@
+import { Info404 } from "../../component/Info404/Info404";
+
 export const Error404 = () => {
-  return (
-    <div>404</div>
-  )
-}
+  return <Info404 />;
+};
