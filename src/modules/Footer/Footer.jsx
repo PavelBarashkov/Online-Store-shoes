@@ -3,7 +3,7 @@ import './styles/main.css'
 import { NavLink } from 'react-router-dom'
 export const Footer = () => {
     return ( 
-        <footer className="container-fluid bg-light footer">
+        <footer className="container-fluid bg-light footer ">
       <div className="row">
         <div className="col">
           <section>
