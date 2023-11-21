@@ -1,5 +1,7 @@
+import { ContactsInfo } from "../../component/ContactsInfo/ContactsInfo";
+
 export const Contacts = () => {
   return (
-    <div>Contacts</div>
+    <ContactsInfo/>
   );
 };
