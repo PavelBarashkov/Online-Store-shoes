@@ -1,7 +1,16 @@
+import { useState } from "react";
 import "./Styles/main.css";
 import logo from "./assests/header-logo.png";
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHref } from "react-router-dom";
 export const Header = () => {
+  const [isSearch, setIsSearch] = useState(false);
+
+  const searchClass = () => {
+    return isSearch
+      ? "header-controls-search-form form-inline"
+      : "header-controls-search-form form-inline invisible";
+  };
+
   return (
     <header className="container-fluid">
       <div className="row">
@@ -33,9 +42,12 @@ export const Header = () => {
                   </NavLink>
                 </li>
               </ul>
-              <div className="d-flex ">
+              <div className="d-flex">
                 <div className="header-controls-pics">
                   <div
+                    onClick={() => {
+                        setIsSearch(!isSearch) 
+                    }}
                     data-id="search-expander"
                     className="header-controls-pic header-controls-search"
                   ></div>
@@ -46,7 +58,7 @@ export const Header = () => {
                 </div>
                 <form
                   data-id="search-form"
-                  className="header-controls-search-form form-inline invisible"
+                  className={searchClass()}
                 >
                   <input className="form-control" placeholder="Поиск" />
                 </form>
