@@ -1,14 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic-ext');
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&subset=cyrillic-ext');
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic-ext");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed&subset=cyrillic-ext");
 #root {
-    height: 100%;
-
+  height: 100%;
 }
 html, body {
     height: 100%;
 }
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
 }
@@ -17,7 +16,10 @@ a {
   color: #727e86;
 }
 
-a, a:hover, a:visited, a:active {
+a,
+a:hover,
+a:visited,
+a:active {
   text-decoration: none;
 }
 
@@ -28,4 +30,12 @@ a:hover {
 section {
   margin-top: 2em;
   margin-bottom: 2em;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.top-sales {
+  min-height: 300px;
 }

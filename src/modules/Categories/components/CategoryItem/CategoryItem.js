@@ -3,7 +3,7 @@ import { setSelected } from "../../slice/categories";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../../../app/hooks.ts";
 import "./style.css";
-import { resetCards } from "../../../Catalog/slice/catalog.js";
+import { resetCards } from "../../../CatalogModule/slice/catalog.js";
 
 export const CategoryItem = ({ category }) => {
   const dispatch = useAppDispatch();
@@ -14,7 +14,10 @@ export const CategoryItem = ({ category }) => {
 
   const handleBtn = () => {
     dispatch(setSelected(category.id));
-    dispatch(resetCards());
+    if (category.id !== selected) {
+        dispatch(resetCards());
+
+    }
   };
   return (
     <>

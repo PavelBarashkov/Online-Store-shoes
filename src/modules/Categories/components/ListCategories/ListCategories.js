@@ -4,7 +4,7 @@ import { useAppDispatch } from "../../../../app/hooks.ts";
 import { setSelected } from "../../slice/categories";
 import { useSelector } from "react-redux";
 import "./main.css";
-import { resetCards } from "../../../Catalog/slice/catalog.js";
+import { resetCards } from "../../../CatalogModule/slice/catalog.js";
 
 export const ListCategories = ({ categories }) => {
   const dispatch = useAppDispatch();
