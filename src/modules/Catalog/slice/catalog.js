@@ -1,15 +1,26 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getCards } from "../API/getCards";
+import { getCategories } from "../API/getCategories";
 
 const initialState = {
-  cards: [],
-  loading: false,
-  error: "",
-  offset: undefined,
-  isShowBtn: true,
-  isAdd: false,
-  subLoading: false,
-  subError: "",
+  cards: {
+    cards: [],
+    loading: false,
+    error: "",
+  },
+  categories: {
+    categories: [],
+    selected: undefined,
+    loading: false,
+    error: "",
+  },
+  addCards: {
+    offset: undefined,
+    isShowBtn: true,
+    isAdd: false,
+    loading: false,
+    error: "",
+  },
 };
 
 export const fetchCard = createAsyncThunk(
@@ -21,7 +32,15 @@ export const fetchCard = createAsyncThunk(
   }
 );
 
-export const catalogCardsSlice = createSlice({
+export const fetchCategories = createAsyncThunk(
+  "catalog/fetchCategories",
+  async () => {
+    const response = await getCategories();
+    return response.data;
+  }
+);
+
+export const catalogSlice = createSlice({
   name: "catalog",
   initialState,
   reducers: {
@@ -29,62 +48,57 @@ export const catalogCardsSlice = createSlice({
       state.isAdd = true;
     },
     resetCards: (state) => {
-      state.cards = [];
-      state.isShowBtn = true;
-      state.loading = false;
-      state.error = "";
-      state.offset = undefined;
-      state.subError = "";
-      state.subLoading = false;
+      state.cards.cards = [];
+      state.addCards.isShowBtn = true;
+      state.cards.loading = false;
+      state.cards.error = "";
+      state.addCards.offset = undefined;
+      state.addCards.error = "";
+      state.cards.loading = false;
+    },
+    setSelected: (state, action) => {
+      state.categories.selected = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCard.pending, (state) => {
-        if(state.cards.length === 0) {
-            state.loading = true;
-            state.error = "";
+        if (state.cards.cards.length === 0) {
+          state.cards.loading = true;
+          state.cards.error = "";
         } else {
-            state.subLoading = true
+          state.addCards.loading = true;
+          state.cards.error = "";
         }
-   
       })
       .addCase(fetchCard.fulfilled, (state, action) => {
-        if (state.isAdd === false) {
-          state.cards = action.payload;
+        if (state.cards.cards.length === 0) {
+          state.cards.cards = action.payload;
         } else {
           if (action.payload.length === 0) {
-            state.isShowBtn = false;
+            state.addCards.isShowBtn = false;
           }
-          state.cards = [...state.cards, ...action.payload];
-          state.subLoading = false
+          state.cards.cards = [...state.cards.cards, ...action.payload];
+          state.addCards.loading = false;
         }
-        state.loading = false;
-        state.error = "";
+        state.cards.loading = false;
+        state.cards.error = "";
       })
       .addCase(fetchCard.rejected, (state, action) => {
         console.log("Error:", action.payload);
-        state.loading = false;
-
-        if (action.payload instanceof Error) {
-          state.error = action.payload.message;
-        } else if (typeof action.payload === "string") {
-          try {
-            const errorData = JSON.parse(action.payload);
-            if (errorData.message) {
-              state.error = errorData.message;
-            } else {
-              state.error = "Произошла ошибка при загрузке.";
-            }
-          } catch (error) {
-            state.error = "Произошла ошибка при загрузке.";
-          }
-        } else {
-          state.error = "Произошла ошибка при загрузке.";
-        }
+        state.cards.loading = false;
+      })
+      .addCase(fetchCategories.pending, (state) => {
+        state.categories.loading = true;
+        state.categories.error = "";
+      })
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+        state.categories.categories = action.payload;
+        state.categories.loading = false;
+        state.categories.error = "";
       });
   },
 });
 
-export const { updateIsAdd , resetCards} = catalogCardsSlice.actions;
-export default catalogCardsSlice.reducer;
+export const { updateIsAdd, resetCards, setSelected } = catalogSlice.actions;
+export default catalogSlice.reducer;

@@ -1,6 +1,6 @@
 import { About } from "../../About/About";
 import { Basket } from "../../Basket/Basket";
-import { Catalog } from "../../Catalog/Catalog";
+import { CatalogPage } from "../../CatalogPage/CatalogPage";
 import { Contacts } from "../../Contacts/Contacts";
 import { Error404 } from "../../Error404/Error404";
 import { Main } from "../../Main/Main";
@@ -22,7 +22,7 @@ export const publicRoutes = [
   },
   {
     path: CATALOG_ROUTE,
-    element: <Catalog />,
+    element: <CatalogPage />,
   },
   {
     path: ABOUT_ROUTE,
