@@ -41,7 +41,7 @@ export const publicRoutes = [
     element: <Basket />,
   },
   {
-    path: PRODUCT_INFO_ROUTE,
+    path: PRODUCT_INFO_ROUTE + '/:id',
     element: <ProductInfo />,
   },
   {
