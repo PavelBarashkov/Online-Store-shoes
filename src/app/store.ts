@@ -1,7 +1,7 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { cardsSlice } from "../modules/TopSales";
 import { categoriesSlice } from "../modules/Categories";
-import { catalogCardsSlice } from "../modules/Catalog";
+import { catalogCardsSlice } from "../modules/CatalogModule";
 
 
 export const store = configureStore({
