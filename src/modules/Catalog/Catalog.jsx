@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../app/hooks.ts";
-import { fetchCard, fetchCategories, updateIsAdd } from "./slice/catalog.js";
+import { fetchCard, fetchCategories, resetCards, updateIsAdd } from "./slice/catalog.js";
 import { ListCard } from "../../component/ListCard/ListCard.jsx";
 import { Preloader } from "../../UI/Preloader/Preloader.jsx";
 import { useLocation } from "react-router-dom";
@@ -21,6 +21,7 @@ export const Catalog = () => {
   };
   useEffect(() => {
     dispatch(fetchCategories());
+    dispatch(resetCards());
   }, []);
 
   useEffect(() => {
