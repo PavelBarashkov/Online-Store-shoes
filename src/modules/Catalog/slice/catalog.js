@@ -99,7 +99,7 @@ export const catalogSlice = createSlice({
           state.cards.cards = [...state.cards.cards, ...action.payload];
           state.addCards.loading = false;
         }
-        if (state.cards.cards.length < 5) {
+        if (state.cards.cards.length < 6) {
           state.addCards.isShowBtn = false;
         }
         state.cards.loading = false;
