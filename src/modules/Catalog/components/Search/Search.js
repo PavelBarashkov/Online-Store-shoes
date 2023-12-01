@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style/main.css";
 import { useAppDispatch } from "../../../../app/hooks.ts";
 import { useSelector } from "react-redux";
@@ -12,11 +12,19 @@ import {
 export const Search = () => {
   const dispatch = useAppDispatch();
   const {  categories, search } = useSelector((state) => state.catalog);
+  const {   search: searchHeader} = useSelector((state) => (state.header));
   const params = {
     categoryId: categories.selected,
     offset: undefined,
     search: search.text,
   };
+
+  useEffect(() => {
+    if(searchHeader !== undefined) {
+        dispatch(setSearch(searchHeader))
+        console.log(searchHeader)
+    }
+  }, [])
 
   return (
     <form className="catalog-search-form form-inline">

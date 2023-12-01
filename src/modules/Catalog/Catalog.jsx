@@ -11,6 +11,7 @@ import {
   fetchCard,
   fetchCategories,
   resetCards,
+  setSearch,
   updateIsAdd,
 } from "./slice/catalog.js";
 
@@ -21,6 +22,7 @@ export const Catalog = () => {
   const { cards, categories, addCards, search } = useSelector(
     (state) => state.catalog
   );
+  const {   search: searchHeader} = useSelector((state) => (state.header));
 
   const params = {
     categoryId: categories.selected,
@@ -31,6 +33,9 @@ export const Catalog = () => {
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(resetCards());
+    if(searchHeader !== undefined) {
+        dispatch(setSearch(searchHeader))
+    }
   }, []);
 
   useEffect(() => {
