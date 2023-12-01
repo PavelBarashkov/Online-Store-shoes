@@ -1,12 +1,14 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { cardsSlice } from "../modules/TopSales";
 import { catalogSlice } from "../modules/Catalog";
+import { headerSlice } from "../modules/Header";
 
 
 export const store = configureStore({
   reducer: {
     cardsTopSales: cardsSlice.reducer,
-    catalog: catalogSlice.reducer
+    catalog: catalogSlice.reducer,
+    header: headerSlice.reducer
   },
 });
 

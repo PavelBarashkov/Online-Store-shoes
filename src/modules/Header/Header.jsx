@@ -1,15 +1,29 @@
-import { useState } from "react";
 import "./Styles/main.css";
+import { useState } from "react";
 import logo from "./assests/header-logo.png";
-import { NavLink, useHref } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../app/hooks.ts";
+import { useSelector } from "react-redux";
+import { setSearch } from "./slice/header.js";
+import { CATALOG_ROUTE } from "../../pages/helpers/contst/const";
 export const Header = () => {
   const [isSearch, setIsSearch] = useState(false);
+  const dispatch = useAppDispatch();
+  const { search } = useSelector((state) => state.header);
+  const navigate = useNavigate();
 
   const searchClass = () => {
     return isSearch
       ? "header-controls-search-form form-inline"
       : "header-controls-search-form form-inline invisible";
   };
+
+  const handlerBtn = () => {
+    setIsSearch(!isSearch);
+    if(search !== undefined) {
+        navigate(CATALOG_ROUTE)
+    }
+  }
 
   return (
     <header className="container-fluid">
@@ -45,9 +59,7 @@ export const Header = () => {
               <div className="d-flex">
                 <div className="header-controls-pics">
                   <div
-                    onClick={() => {
-                        setIsSearch(!isSearch) 
-                    }}
+                    onClick={handlerBtn}
                     data-id="search-expander"
                     className="header-controls-pic header-controls-search"
                   ></div>
@@ -56,11 +68,13 @@ export const Header = () => {
                     <div className="header-controls-cart-menu"></div>
                   </div>
                 </div>
-                <form
-                  data-id="search-form"
-                  className={searchClass()}
-                >
-                  <input className="form-control" placeholder="Поиск" />
+                <form data-id="search-form" className={searchClass()}>
+                  <input
+                    className="form-control"
+                    placeholder="Поиск"
+                    value={search}
+                    onChange={(e) => dispatch(setSearch(e.target.value))}
+                  />
                 </form>
               </div>
             </div>
