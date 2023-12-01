@@ -15,19 +15,22 @@ const initialState = {
     error: "",
   },
   addCards: {
-    offset: undefined,
     isShowBtn: true,
     isAdd: false,
     loading: false,
     error: "",
+  },
+  search: {
+    text: undefined,
+    isSearch: false,
   },
 };
 
 export const fetchCard = createAsyncThunk(
   "catalog/fetchCard",
   async (params) => {
-    const { categoryId, offset } = params;
-    const response = await getCards(categoryId, offset);
+    const { categoryId, offset, search } = params;
+    const response = await getCards(categoryId, offset, search);
     return response.data;
   }
 );
@@ -55,9 +58,24 @@ export const catalogSlice = createSlice({
       state.addCards.offset = undefined;
       state.addCards.error = "";
       state.cards.loading = false;
+      state.search.text = undefined;
+      state.search.isSearch = false;
+    },
+    cleanCards: (state) => {
+      state.cards.cards = [];
     },
     setSelected: (state, action) => {
       state.categories.selected = action.payload;
+    },
+    setSearch: (state, action) => {
+      if (action.payload === "") {
+        state.search.text = undefined;
+      } else {
+        state.search.text = action.payload;
+      }
+    },
+    isSearch: (state) => {
+      state.search.isSearch = true;
     },
   },
   extraReducers: (builder) => {
@@ -81,6 +99,9 @@ export const catalogSlice = createSlice({
           state.cards.cards = [...state.cards.cards, ...action.payload];
           state.addCards.loading = false;
         }
+        if (state.cards.cards.length < 5) {
+          state.addCards.isShowBtn = false;
+        }
         state.cards.loading = false;
         state.cards.error = "";
       })
@@ -100,5 +121,12 @@ export const catalogSlice = createSlice({
   },
 });
 
-export const { updateIsAdd, resetCards, setSelected } = catalogSlice.actions;
+export const {
+  updateIsAdd,
+  resetCards,
+  setSelected,
+  setSearch,
+  cleanCards,
+  isSearch,
+} = catalogSlice.actions;
 export default catalogSlice.reducer;
