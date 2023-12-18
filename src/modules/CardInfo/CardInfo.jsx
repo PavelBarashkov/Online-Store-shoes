@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Title } from "./components/Title/Title.jsx";
 import { ImageCard } from "./components/ImageCard/ImageCard.jsx";
+import { Table } from "./components/Table/Table.jsx";
 
 export const CardInfo = () => {
   const dispatch = useAppDispatch();
@@ -23,34 +24,7 @@ export const CardInfo = () => {
           <ImageCard img={card.images[0]} alt={card.title} />
         </div>
         <div className="col-7">
-          <table className="table table-bordered">
-            <tbody>
-              <tr>
-                <td>Артикул</td>
-                <td>1000046</td>
-              </tr>
-              <tr>
-                <td>Производитель</td>
-                <td>PAUL ANDREW</td>
-              </tr>
-              <tr>
-                <td>Цвет</td>
-                <td>Чёрный</td>
-              </tr>
-              <tr>
-                <td>Материалы</td>
-                <td>Кожа</td>
-              </tr>
-              <tr>
-                <td>Сезон</td>
-                <td>Лето</td>
-              </tr>
-              <tr>
-                <td>Повод</td>
-                <td>Прогулка</td>
-              </tr>
-            </tbody>
-          </table>
+            <Table card={card}/>
           <div className="text-center">
             <p>
               Размеры в наличии:{" "}
