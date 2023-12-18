@@ -2,25 +2,25 @@ import React, { useEffect } from "react";
 import { useAppDispatch } from "../../app/hooks.ts";
 import { fetchCardInfo } from "./slice/cardSlice";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Title } from "./components/Title/Title.jsx";
+import { ImageCard } from "./components/ImageCard/ImageCard.jsx";
 
 export const CardInfo = () => {
   const dispatch = useAppDispatch();
+  const { card } = useSelector((state) => state.cardInfo);
   const { id } = useParams();
-  const getId = (str) => Number(str.split('.').slice(0, 1));
+  const getId = (str) => Number(str.split(".").slice(0, 1));
   useEffect(() => {
-    if (id) dispatch(fetchCardInfo(getId(id)))
+    if (id) dispatch(fetchCardInfo(getId(id)));
   }, []);
 
   return (
     <section className="catalog-item">
-      <h2 className="text-center">Босоножки 'MYER'</h2>
+      <Title title={card.title} />
       <div className="row">
         <div className="col-5">
-          <img
-            src=".././img/products/sandals_myer.jpg"
-            className="img-fluid"
-            alt=""
-          />
+          <ImageCard img={card.images[0]} alt={card.title} />
         </div>
         <div className="col-7">
           <table className="table table-bordered">
