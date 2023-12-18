@@ -23,20 +23,25 @@ export const cardSlice = createSlice({
   name: "Card info",
   initialState,
   reducers: {
+    resetCard: (state) => {
+      state.card = {};
+      state.selected.size = null;
+      state.selected.quantity = 1;
+    },
     setSize: (state, action) => {
       state.selected.size = action.payload;
     },
     addQuantity: (state) => {
-        if(state.selected.quantity === 10) {
-            return
-        }
+      if (state.selected.quantity === 10) {
+        return;
+      }
       state.selected.quantity += 1;
     },
     reduceQuantity: (state) => {
-        if(state.selected.quantity === 1) {
-            return
-        }
-        state.selected.quantity -= 1;
+      if (state.selected.quantity === 1) {
+        return;
+      }
+      state.selected.quantity -= 1;
     },
   },
   extraReducers: (builder) => {
@@ -74,5 +79,6 @@ export const cardSlice = createSlice({
   },
 });
 
-export const { setSize, addQuantity, reduceQuantity } = cardSlice.actions;
+export const { resetCard, setSize, addQuantity, reduceQuantity } =
+  cardSlice.actions;
 export default cardSlice.reducer;
