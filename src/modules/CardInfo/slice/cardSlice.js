@@ -3,6 +3,10 @@ import { getCardInfo } from "../API/getCardInfo";
 
 const initialState = {
   card: {},
+  selected: {
+    size: null,
+    value: null,
+  },
   loading: false,
   error: "",
 };
@@ -18,7 +22,11 @@ export const fetchCardInfo = createAsyncThunk(
 export const cardSlice = createSlice({
   name: "Card info",
   initialState,
-  reducers: {},
+  reducers: {
+    setSize: (state, action) => {
+      state.selected.size = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCardInfo.pending, (state) => {
@@ -54,5 +62,5 @@ export const cardSlice = createSlice({
   },
 });
 
-export const {} = cardSlice.actions;
+export const { setSize } = cardSlice.actions;
 export default cardSlice.reducer;
