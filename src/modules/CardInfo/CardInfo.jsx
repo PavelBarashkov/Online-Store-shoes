@@ -7,10 +7,11 @@ import { Title } from "./components/Title/Title.jsx";
 import { ImageCard } from "./components/ImageCard/ImageCard.jsx";
 import { Table } from "./components/Table/Table.jsx";
 import { Sizes } from "./components/Sizes/Sizes.jsx";
+import { Quantity } from "./components/Quantity/Quantity.jsx";
 
 export const CardInfo = () => {
   const dispatch = useAppDispatch();
-  const { card } = useSelector((state) => state.cardInfo);
+  const { card, selected } = useSelector((state) => state.cardInfo);
   const { id } = useParams();
   const getId = (str) => Number(str.split(".").slice(0, 1));
   useEffect(() => {
@@ -30,16 +31,9 @@ export const CardInfo = () => {
             <>
               <div className="text-center">
                 <Sizes sizes={card.sizes} />
-                <p>
-                  Количество:{" "}
-                  <span className="btn-group btn-group-sm pl-2">
-                    <button className="btn btn-secondary">-</button>
-                    <span className="btn btn-outline-primary">1</span>
-                    <button className="btn btn-secondary">+</button>
-                  </span>
-                </p>
+                <Quantity/>
               </div>
-              <button className="btn btn-danger btn-block btn-lg">
+              <button disabled={selected.size === null} className="btn btn-danger btn-block btn-lg">
                 В корзину
               </button>
             </>

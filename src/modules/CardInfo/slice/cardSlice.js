@@ -5,7 +5,7 @@ const initialState = {
   card: {},
   selected: {
     size: null,
-    value: null,
+    quantity: 1,
   },
   loading: false,
   error: "",
@@ -25,6 +25,18 @@ export const cardSlice = createSlice({
   reducers: {
     setSize: (state, action) => {
       state.selected.size = action.payload;
+    },
+    addQuantity: (state) => {
+        if(state.selected.quantity === 10) {
+            return
+        }
+      state.selected.quantity += 1;
+    },
+    reduceQuantity: (state) => {
+        if(state.selected.quantity === 1) {
+            return
+        }
+        state.selected.quantity -= 1;
     },
   },
   extraReducers: (builder) => {
@@ -62,5 +74,5 @@ export const cardSlice = createSlice({
   },
 });
 
-export const { setSize } = cardSlice.actions;
+export const { setSize, addQuantity, reduceQuantity } = cardSlice.actions;
 export default cardSlice.reducer;
