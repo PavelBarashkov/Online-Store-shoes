@@ -3,6 +3,7 @@ import { cardsSlice } from "../modules/TopSales";
 import { catalogSlice } from "../modules/Catalog";
 import { headerSlice } from "../modules/Header";
 import { cardSlice } from "../modules/CardInfo";
+import basketSlice from "../slices/basketSlice";
 
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     catalog: catalogSlice.reducer,
     header: headerSlice.reducer,
     cardInfo: cardSlice.reducer,
+    basket: basketSlice
   },
 });
 

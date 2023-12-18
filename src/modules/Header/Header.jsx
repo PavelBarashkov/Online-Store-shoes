@@ -1,15 +1,17 @@
 import "./Styles/main.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "./assests/header-logo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks.ts";
 import { useSelector } from "react-redux";
 import { setSearch } from "./slice/header.js";
-import { CATALOG_ROUTE } from "../../pages/helpers/contst/const";
+import { BASKET_ROUTE, CATALOG_ROUTE } from "../../pages/helpers/contst/const";
 export const Header = () => {
   const [isSearch, setIsSearch] = useState(false);
   const dispatch = useAppDispatch();
   const { search } = useSelector((state) => state.header);
+  const { basket, count } = useSelector((state) => state.basket);
+
   const navigate = useNavigate();
 
   const searchClass = () => {
@@ -24,6 +26,10 @@ export const Header = () => {
         navigate(CATALOG_ROUTE)
     }
   }
+
+  useEffect(() => {
+
+  }, [basket])
 
   return (
     <header className="container-fluid">
@@ -63,8 +69,10 @@ export const Header = () => {
                     data-id="search-expander"
                     className="header-controls-pic header-controls-search"
                   ></div>
-                  <div className="header-controls-pic header-controls-cart">
-                    <div className="header-controls-cart-full">1</div>
+                  <div onClick={() => navigate(BASKET_ROUTE)} className="header-controls-pic header-controls-cart">
+                    {count > 0 && (
+                      <div className="header-controls-cart-full">{count}</div>
+                    )}
                     <div className="header-controls-cart-menu"></div>
                   </div>
                 </div>
