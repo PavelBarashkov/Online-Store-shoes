@@ -9,7 +9,8 @@ export const Card = ({ card, type }) => {
 
   if (type === 'catalog') {
     return (
-        <div className="card catalog-item-card ">
+        <div className="card catalog-item-card customImg">
+          <div style={{backgroundImage: card.images[0]}}></div>
             <div className="img-container">
             <img
             src={card.images && card.images[0]}
@@ -17,7 +18,6 @@ export const Card = ({ card, type }) => {
             alt={card.title}
           />
             </div>
-          
           <div className="card-body">
             <p className="card-text">{readyTitle}</p>
             <p className="card-text">{card.price} руб.</p>
@@ -36,7 +36,7 @@ export const Card = ({ card, type }) => {
             <div className="img-container">
             <img
             src={card.images && card.images[0]}
-            className="card-img-top img-fluid"
+            className="card-img-top img-fluid customImg"
             alt={card.title}
           />
             </div>
