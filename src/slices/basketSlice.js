@@ -29,10 +29,14 @@ export const BasketSlice = createSlice({
         state.basket = state.basket.filter(item => item.cardId !== action.payload.cardId)
         localStorage.setItem('basket', JSON.stringify(state.basket));
         state.count -= action.payload.quantity
-
+      },
+      resetBasket: (state) => {
+        state.basket = [];
+        localStorage.setItem('basket', JSON.stringify([]));
+        state.count = 0
       }
   },
 });
 
-export const { addInBasket, deleteItem } = BasketSlice.actions;
+export const { addInBasket, deleteItem, resetBasket } = BasketSlice.actions;
 export default BasketSlice.reducer;
