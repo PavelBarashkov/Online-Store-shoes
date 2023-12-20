@@ -9,6 +9,7 @@ import { Table } from "./components/Table/Table.jsx";
 import { Sizes } from "./components/Sizes/Sizes.jsx";
 import { Quantity } from "./components/Quantity/Quantity.jsx";
 import { Preloader } from "../../UI/Preloader/Preloader.jsx";
+import { addInBasket } from "../../slices/basketSlice.js";
 
 export const CardInfo = () => {
   const dispatch = useAppDispatch();
@@ -53,6 +54,17 @@ export const CardInfo = () => {
                       </div>
                       <button
                         disabled={selected.size === null}
+                        onClick={() =>
+                          dispatch(
+                            addInBasket({
+                              cardId: card.id,
+                              name: card.title,
+                              size: selected.size,
+                              quantity: selected.quantity,
+                              price: card.price,
+                            })
+                          )
+                        }
                         className="btn btn-danger btn-block btn-lg"
                       >
                         В корзину
